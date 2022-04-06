@@ -1,0 +1,84 @@
+
+ /* adds background image to homepage */
+ body {
+  background: url(images/covid09.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+ /** Corona Title **/
+ #covid-title {
+  padding-right: 30rem;
+   color: white;
+   text-align: center;
+   }
+
+   /** positioning of form */
+   .input-bar {
+    padding: 22px;
+   }
+/** color of the text input **/
+   #searchText {
+     color: white;
+   }
+
+    /* centers the Prevention title  */
+  .prev {
+    text-align: center;
+  }
+  
+  /* centers the Symptoms title */
+  .symp {
+    text-align: center;
+  }
+
+/* customize the left side information under Preventions*/
+#div1 {
+  font-size: large;
+  right:0;
+  padding:1rem ;
+  padding-top: 5rem;
+   text-align: center;
+   color:yellow
+   }
+
+   /* customize the left side information under Symptoms */
+#div2 {
+font-size: large;
+  left: 0;
+  padding:1rem ;
+  padding-top: 5rem;
+  text-align: center;
+   color:yellow
+}
+
+/** 2nd page title **/
+ #countryTitle {
+   text-align: center;
+    font-size: 53.4px;
+   color: white;
+ }
+/** infomation on 2nd page **/
+ #infoLi {
+   color: yellow;
+   text-align: center;
+   font-size: x-large
+ }
+
+ /** back button on 2nd page **/
+ #back-btn {
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 60%;
+ }
+
+ /* customization of my footer */
+ #footer {
+  position: absolute;
+  width: 100px;
+  left:0px;
+  bottom: 0px;
+  height: 25px;
+  width:100%;
+  text-align: center;
+}
