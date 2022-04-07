@@ -80,6 +80,7 @@ function renderSearch() {
   document.querySelector("#searchForm").addEventListener("submit", renderHome);
 }
 
+
 function returnCountry() {
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -89,7 +90,9 @@ function returnCountry() {
     fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
       .then(r => r.json())
       .then(countries => {
-        for (let info in countries.All) {
+        for(let info in countries.All) {
+          if (info == "recovered") { continue; }
+          
           let li = document.createElement("li");
           let ul = document.getElementById("infoLi");
           let countryTitle = document.getElementById("countryTitle");
@@ -97,7 +100,7 @@ function returnCountry() {
           ul.appendChild(li);
           countryTitle.innerText = `Statistic on Coronavirus in ${inputValue}`;
           mainInfoDiv.appendChild(ul, countryTitle);
-          console.log(info);
+      
 
           e.target.reset();
         }
