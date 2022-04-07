@@ -83,6 +83,7 @@ function renderSearch() {
 function returnCountry() {
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
+
     let inputValue = e.target.searchText.value;
 
     fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
@@ -92,11 +93,13 @@ function returnCountry() {
           let li = document.createElement("li");
           let ul = document.getElementById("infoLi");
           let countryTitle = document.getElementById("countryTitle");
-
           li.innerText = `${info}: ` + countries.All[info];
           ul.appendChild(li);
           countryTitle.innerText = `Statistic on Coronavirus in ${inputValue}`;
           mainInfoDiv.appendChild(ul, countryTitle);
+          console.log(info);
+
+          e.target.reset();
         }
       });
   });
