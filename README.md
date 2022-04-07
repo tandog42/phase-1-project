@@ -16,4 +16,5 @@ Using an open API that consists of Coronavirus cases. I was able to create a sin
 - Displays specific stastics for that givin country
 
 ## Walkthrough
-<iframe src="https://giphy.com/embed/lzcZijmy9ZAEs3Ib6c" width="480" height="228" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/lzcZijmy9ZAEs3Ib6c">via GIPHY</a></p>
+
+![](https://media4.giphy.com/media/lzcZijmy9ZAEs3Ib6c/giphy.gif)
