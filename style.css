@@ -1,5 +1,5 @@
 
- /* adds background image to homepage */
+ /* adds background image to homepage **/
  body {
   background: url(images/covid09.jpg);
   background-repeat: no-repeat;
@@ -79,6 +79,7 @@ font-size: large;
   left:0px;
   bottom: 0px;
   height: 25px;
-  width:100%;
+  width: 100%;
   text-align: center;
+  
 }
