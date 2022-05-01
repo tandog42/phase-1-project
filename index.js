@@ -2,16 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   returnCountry();
   renderSearch();
   renderHome();
+  
 });
 
 const mainInfoDiv = document.getElementById("main-info");
 
-function clearMain() {
-  mainInfoDiv.innerHTML = "";
-}
-
 function renderHome() {
-  clearMain();
   mainInfoDiv.innerHTML = `
   <div class="row">
       <div class="col s8"> 
@@ -65,6 +61,10 @@ function renderHome() {
   searchForm.addEventListener("submit", renderSearch);
 }
 
+function clearMain() {
+  mainInfoDiv.innerHTML = "";
+}
+     
 function renderSearch() {
   clearMain();
   mainInfoDiv.innerHTML = `
@@ -77,14 +77,16 @@ function renderSearch() {
   <button id="back-btn" type="click">Back</button>`;
 
   document.getElementById("back-btn").addEventListener("click", renderHome);
-  document.querySelector("#searchForm").addEventListener("submit", renderHome);
 }
 
+
+
 function returnCountry() {
+  let searchForm = document.getElementById("searchForm");
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
     let inputValue = e.target.searchText.value;
-      fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
+    fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
       .then(r => r.json())
       .then(countries => {
         for (let info in countries.All) {
@@ -95,7 +97,7 @@ function returnCountry() {
           let li = document.createElement("li");
           let ul = document.getElementById("infoLi");
           let countryTitle = document.getElementById("countryTitle");
-          li.innerText = `${info}: ` + countries.All[info];
+          li.innerText =  `${info}:  ` + countries.All[info];
           ul.appendChild(li);
           countryTitle.innerText = `Statistic on Coronavirus in ${inputValue}`;
           mainInfoDiv.appendChild(ul, countryTitle);
