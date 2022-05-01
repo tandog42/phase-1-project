@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   returnCountry();
   renderSearch();
   renderHome();
+  
 });
 
 const mainInfoDiv = document.getElementById("main-info");
