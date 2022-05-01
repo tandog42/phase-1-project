@@ -6,12 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const mainInfoDiv = document.getElementById("main-info");
 
-function clearMain() {
-  mainInfoDiv.innerHTML = "";
-}
-
 function renderHome() {
-  clearMain();
   mainInfoDiv.innerHTML = `
   <div class="row">
       <div class="col s8"> 
@@ -64,6 +59,9 @@ function renderHome() {
   document.querySelector("#searchForm");
   searchForm.addEventListener("submit", renderSearch);
 }
+function clearMain() {
+  mainInfoDiv.innerHTML = "";
+}
 
 function renderSearch() {
   clearMain();
@@ -81,10 +79,11 @@ function renderSearch() {
 }
 
 function returnCountry() {
+  let searchForm = document.getElementById("searchForm");
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
     let inputValue = e.target.searchText.value;
-      fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
+    fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
       .then(r => r.json())
       .then(countries => {
         for (let info in countries.All) {
