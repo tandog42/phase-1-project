@@ -6,7 +6,7 @@ const mainInfoDiv = document.getElementById("main-info");
 
 function renderHome() {
   updateHeader("Coronavirus");
-  
+
   mainInfoDiv.innerHTML = `
   
     <div id="div1" class="col s6">    
@@ -50,24 +50,27 @@ function renderHome() {
       
         </div> 
         `;
-        input()
+  input();
 }
 
 function input() {
   const form = document.querySelector("#searchForm");
   form.addEventListener("submit", renderSearch);
 }
+
 function clearMain() {
   mainInfoDiv.innerHTML = "";
 }
+
 function updateHeader(newHeader) {
   const head = document.getElementById("covid-title");
   head.innerHTML = newHeader;
 }
+
 returnCountry();
+
 function renderSearch(e) {
   e.preventDefault();
-  console.log(e);
   clearMain();
 
   mainInfoDiv.innerHTML = `
@@ -82,7 +85,6 @@ function renderSearch(e) {
 }
 
 function returnCountry() {
-  createStats();
   let searchForm = document.getElementById("searchForm");
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
