@@ -1,20 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  returnCountry();
-  renderSearch();
   renderHome();
-  
 });
 
 const mainInfoDiv = document.getElementById("main-info");
 
 function renderHome() {
+  updateHeader("Coronavirus");
+  
   mainInfoDiv.innerHTML = `
-  <div class="row">
-      <div class="col s8"> 
-        <h1 id="covid-title" >Coronavirus</h1>
-      </div>
-  <div class="row">
-      
+  
     <div id="div1" class="col s6">    
   <h2 class="symp">Symptoms</h2>
   
@@ -56,30 +50,39 @@ function renderHome() {
       
         </div> 
         `;
+        input()
+}
 
-  document.querySelector("#searchForm");
-  searchForm.addEventListener("submit", renderSearch);
+function input() {
+  const form = document.querySelector("#searchForm");
+  form.addEventListener("submit", renderSearch);
 }
 function clearMain() {
   mainInfoDiv.innerHTML = "";
 }
-
-function renderSearch() {
+function updateHeader(newHeader) {
+  const head = document.getElementById("covid-title");
+  head.innerHTML = newHeader;
+}
+returnCountry();
+function renderSearch(e) {
+  e.preventDefault();
+  console.log(e);
   clearMain();
+
   mainInfoDiv.innerHTML = `
-  <div>
   <div class="row">
-      <div class="container" id="countryTitle" class="col s8"> 
-        <h1></h1>
+     <div class="container" id="countryTitle" class="col s8"> 
       </div>
     <ul id="infoLi"> </ul>
+    
   <button id="back-btn" type="click">Back</button>`;
 
   document.getElementById("back-btn").addEventListener("click", renderHome);
-  document.querySelector("#searchForm").addEventListener("submit", renderHome);
 }
 
 function returnCountry() {
+  createStats();
   let searchForm = document.getElementById("searchForm");
   searchForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -92,12 +95,14 @@ function returnCountry() {
             continue;
           }
 
+          updateHeader(`Statistic on Coronavirus in ${inputValue}`);
           let li = document.createElement("li");
           let ul = document.getElementById("infoLi");
           let countryTitle = document.getElementById("countryTitle");
+          countryTitle.innerHTML = "";
           li.innerText = `${info}: ` + countries.All[info];
           ul.appendChild(li);
-          countryTitle.innerText = `Statistic on Coronavirus in ${inputValue}`;
+
           mainInfoDiv.appendChild(ul, countryTitle);
 
           e.target.reset();
