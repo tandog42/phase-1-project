@@ -7,9 +7,10 @@
  }
  /** Corona Title **/
  #covid-title {
-  padding-right: 30rem;
+  padding-left: 30rem;
    color: white;
    text-align: center;
+   
    }
 
    /** positioning of form */
@@ -29,6 +30,7 @@
   /* centers the Symptoms title */
   .symp {
     text-align: center;
+    
   }
 
 /* customize the left side information under Preventions*/
@@ -51,17 +53,14 @@ font-size: large;
    color:yellow
 }
 
-/** 2nd page title **/
- #countryTitle {
-   text-align: center;
-    font-size: 53.4px;
-   color: white;
- }
+
+
 /** infomation on 2nd page **/
  #infoLi {
    color: yellow;
    text-align: center;
-   font-size: x-large
+   font-size: x-large;
+   padding-bottom: 30rem;
  }
 
  /** back button on 2nd page **/
