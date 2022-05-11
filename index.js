@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   renderHome();
+  input();
 });
 
 const mainInfoDiv = document.getElementById("main-info");
 
 function renderHome() {
   updateHeader("Coronavirus");
-
   mainInfoDiv.innerHTML = `
   
     <div id="div1" class="col s6">    
@@ -50,12 +50,16 @@ function renderHome() {
       
         </div> 
         `;
-  input();
 }
 
 function input() {
-  const form = document.querySelector("#searchForm");
-  form.addEventListener("submit", renderSearch);
+  const formSearch = document.querySelector("#searchForm");
+  formSearch.addEventListener("submit", e => {
+    e.preventDefault();
+    renderSearch();
+    returnCountry(e.target.searchText.value);
+    e.target.reset();
+  });
 }
 
 function clearMain() {
@@ -67,10 +71,7 @@ function updateHeader(newHeader) {
   head.innerHTML = newHeader;
 }
 
-returnCountry();
-
-function renderSearch(e) {
-  e.preventDefault();
+function renderSearch() {
   clearMain();
 
   mainInfoDiv.innerHTML = `
@@ -84,31 +85,24 @@ function renderSearch(e) {
   document.getElementById("back-btn").addEventListener("click", renderHome);
 }
 
-function returnCountry() {
-  let searchForm = document.getElementById("searchForm");
-  searchForm.addEventListener("submit", e => {
-    e.preventDefault();
-    let inputValue = e.target.searchText.value;
-    fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${inputValue}`)
-      .then(r => r.json())
-      .then(countries => {
-        for (let info in countries.All) {
-          if (info == "recovered") {
-            continue;
-          }
-
-          updateHeader(`Statistic on Coronavirus in ${inputValue}`);
-          let li = document.createElement("li");
-          let ul = document.getElementById("infoLi");
-          let countryTitle = document.getElementById("countryTitle");
-          countryTitle.innerHTML = "";
-          li.innerText = `${info}: ` + countries.All[info];
-          ul.appendChild(li);
-
-          mainInfoDiv.appendChild(ul, countryTitle);
-
-          e.target.reset();
+function returnCountry(country) {
+  fetch(`https://covid-api.mmediagroup.fr/v1/cases?country=${country}`)
+    .then(r => r.json())
+    .then(countries => {
+      for (let info in countries.All) {
+        if (info == "recovered") {
+          continue;
         }
-      });
-  });
+
+        updateHeader(`Statistic on Coronavirus in ${country}`);
+        const li = document.createElement("li");
+        const ul = document.getElementById("infoLi");
+        const countryTitle = document.getElementById("countryTitle");
+        countryTitle.innerHTML = "";
+        li.innerText = `${info}: ` + countries.All[info];
+        ul.appendChild(li);
+
+        mainInfoDiv.appendChild(ul, countryTitle);
+      }
+    });
 }
